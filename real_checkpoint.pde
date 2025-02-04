@@ -6,9 +6,13 @@ void setup() {
 }
 
 void draw() {
+  //sky
   background(#5FD3FF);
+  //grass
   fill(#0DFF5F);
   rect(0, 500, width, 500); //x, y, w , h
+  
+  //house
   fill(#ECF500);
   square(width-600, 500, 200); //x, y, size
   fill(#F20C1F);
@@ -21,6 +25,8 @@ void draw() {
   rect(475,600,50,100);
   fill(#5F8AE5);
   circle(482, 647,5);
+  
+  //sun
   fill(#FC8208);
   circle(100, 100, 75);
   println(mouseX,mouseY);
