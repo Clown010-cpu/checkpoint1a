@@ -21,5 +21,7 @@ void draw() {
   rect(475,600,50,100);
   fill(#5F8AE5);
   circle(482, 647,5);
+  fill(#FC8208);
+  circle(100, 100, 75);
   println(mouseX,mouseY);
 }
