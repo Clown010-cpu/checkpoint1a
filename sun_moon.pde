@@ -84,17 +84,17 @@ void drawmoon () {
 
   //moon
   moonY = moonY - 1;
-  if (moonY < -50) {
+  if (moonY < height) {
     moonY = 461.5;
     day = true;
-
-    moonX = moonX - 1;
-    if (moonX < -50) {
-      moonX = 461.5;
-      day = true;
-
-      fill(#FAFF00);
-      circle(100, moonY, 75);
-      fill(#000000);
-      circle(75, moonX, 75);
-    }
+  }
+  moonX = moonX - 1;
+  if (moonX < height) {
+    moonX = 461.5;
+    day = true;
+  }
+  fill(#FAFF00);
+  circle(100, moonY, 75);
+  fill(#000000);
+  circle(75, moonX, 75);
+}
