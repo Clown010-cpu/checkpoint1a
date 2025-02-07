@@ -13,21 +13,19 @@ boolean day;
 
 void setup() {
   size(1000, 1000);
-  sunY = 150;
-  moonY = height + 50; // Start moon below screen
+  sunY = 300;
+  moonY = height + 50;
   moonX = 100;
   day = true;
 }
 
 void draw() {
-  // Set sky color based on time of day
   if (day) {
-    background(blue); // Daytime sky
+    background(blue);
   } else {
-    background(0); // Night sky
+    background(0);
   }
 
-  // Handle sun and moon transitions
   if (day) {
     drawsun();
   } else {
@@ -59,13 +57,13 @@ void drawsun() {
   // Sun movement
   fill(#FC8208);
   circle(100, sunY, 75);
-  sunY -= 1;
+  sunY -= 5;
 
-  // When sun goes below screen, switch to night
+ 
   if (sunY < -50) {
-    sunY = 150; // Reset sun position
-    day = false; // Switch to night
-    moonY = height + 50; // Reset moon start position
+    sunY = 150; 
+    day = false; 
+    moonY = height + 100; 
     moonX = 100;
   }
 }
@@ -75,14 +73,15 @@ void drawmoon() {
   fill(#FAFF00);
   circle(moonX, moonY, 75);
   
-  // Create shadow effect
+ // black circle
   fill(#000000);
   circle(moonX - 25, moonY, 75);
 
-  moonY -= 1;
+  moonY -= 5;
   
-  // When moon reaches top, switch back to day
-  if (moonY < 150) {
+
+  if (moonY < -100) {
     day = true;
+    sunY = height + 100;
   }
 }
