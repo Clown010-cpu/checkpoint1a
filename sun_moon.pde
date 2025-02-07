@@ -1,100 +1,88 @@
-//charles
-//4-2-2025
+// Charles
+// 4-2-2025
 
-
-color red = #E30000; // stores colors
+color red = #E30000; // Stores colors
 color blue = #90e0ef;
 color green = #02F254;
 
-//animation variables
+// Animation variables
 float sunY;
 float moonY;
 float moonX;
 boolean day;
 
-
-
-
 void setup() {
   size(1000, 1000);
-  moonY = 461.5;
-  moonX = 461.5;
   sunY = 150;
-  day=true;
+  moonY = height + 50; // Start moon below screen
+  moonX = 100;
+  day = true;
 }
 
 void draw() {
-  //sky
-  background(blue);
+  // Set sky color based on time of day
+  if (day) {
+    background(blue); // Daytime sky
+  } else {
+    background(0); // Night sky
+  }
 
-  //animation
-
-
-  if (day == true)
-  {
+  // Handle sun and moon transitions
+  if (day) {
     drawsun();
-  }
-
-  if (day == false) {
+  } else {
     drawmoon();
-    background(0);
   }
 
-  //grass
+  // Grass
   fill(green);
-  rect(0, 500, width, 500); //x, y, w , h
+  rect(0, 500, width, 500);
 
-
-  //house
+  // House
   fill(#ECF500);
-  square(width-600, 500, 200); //x, y, size
+  square(width - 600, 500, 200);
   fill(red);
-  triangle(600, height/2, width/2, 200, width-600, height/2); //x1, y1, x2, y2, x3, y3
+  triangle(600, height / 2, width / 2, 200, width - 600, height / 2);
   fill(#A188D8);
-  circle(500, 475, 50); //x, y, diameter
-  line(500, 450, width/2, height/2); //x1, y1, x2, y2
-  line(475, 474, 525, 475); //x1, y1, x2, y2
+  circle(500, 475, 50);
+  line(500, 450, width / 2, height / 2);
+  line(475, 474, 525, 475);
   fill(#A58305);
   rect(475, 600, 50, 100);
   fill(#5F8AE5);
   circle(482, 647, 5);
 
-
-
   println(mouseX, mouseY);
 }
 
-
-void drawsun () {
-
-  //sun
+void drawsun() {
+  // Sun movement
   fill(#FC8208);
   circle(100, sunY, 75);
+  sunY -= 1;
 
-
-  sunY = sunY - 1;
+  // When sun goes below screen, switch to night
   if (sunY < -50) {
-    sunY = 150;
-    day = false;
+    sunY = 150; // Reset sun position
+    day = false; // Switch to night
+    moonY = height + 50; // Reset moon start position
+    moonX = 100;
   }
 }
 
-void drawmoon () {
-
-
-  //moon
-  moonY = moonY - 1;
-  if (moonY < height) {
-    moonY = 461.5;
-    day = true;
-  }
-  moonX = moonX - 1;
-  if (moonX < height) {
-    moonX = 461.5;
-    day = true;
-  }
+void drawmoon() {
+  // Moon movement
   fill(#FAFF00);
-  circle(100, moonY, 75);
+  circle(moonX, moonY, 75);
+  
+  // Create shadow effect
   fill(#000000);
-  circle(75, moonX, 75);
+  circle(moonX - 25, moonY, 75);
+
+  moonY -= 1;
+  
+  // When moon reaches top, switch back to day
+  if (moonY < 150) {
+    day = true;
+  }
 }
